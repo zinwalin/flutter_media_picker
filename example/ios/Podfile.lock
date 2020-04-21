@@ -50,7 +50,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  flutter_media_picker: 84ce5e3f4445c548b1eb8c69e4167e994dfbfc04
+  flutter_media_picker: 88d7a04feb6257503de609766850067cb6ad1a96
   path_provider: fb74bd0465e96b594bb3b5088ee4a4e7bb1f2a9d
   path_provider_macos: f760a3c5b04357c380e2fddb6f9db6f3015897e0
   shared_preferences: 430726339841afefe5142b9c1f50cb6bd7793e01

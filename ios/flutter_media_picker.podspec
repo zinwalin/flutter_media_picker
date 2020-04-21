@@ -16,7 +16,7 @@ A new flutter plugin project.
   s.source_files = 'Classes/**/*.m', 'Classes/**/*.h'
   s.public_header_files = 'Classes/**/*.h'
   s.xcconfig = {'GCC_PREPROCESSOR_DEFINITIONS' => '$(inherited) LF_MEDIAEDIT=1' }
-  s.resources    = 'Classes/LFImagePickerController/*.bundle', 'Classes/LFMediaEditingController/common/*.bundle'
+  s.resources    = 'Classes/LFImagePickerController/*.bundle', 'Classes/LFMediaEditingController/common/*.bundle', 'Classes/LFMediaEditingController/vendors/LFTipsGuideView/*.bundle', 'Classes/LFMediaEditingController/vendors/LFEasyNoticeBar/*.bundle'
   # s.dependency 'LFImagePickerController/LFGifPlayer'
   # s.dependency 'LFImagePickerController/LFToGIF'
   s.dependency 'Flutter'
