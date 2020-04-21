@@ -8,6 +8,16 @@ import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
 import android.app.Activity;
+import android.content.Intent;
+
+import com.luck.picture.lib.PictureSelector;
+import com.luck.picture.lib.config.PictureConfig;
+import com.luck.picture.lib.config.PictureMimeType;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /** FlutterMediaPickerPlugin */
 public class FlutterMediaPickerPlugin implements FlutterPlugin, MethodCallHandler {
@@ -28,7 +38,20 @@ public class FlutterMediaPickerPlugin implements FlutterPlugin, MethodCallHandle
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
     if (call.method.equals("get_assets")) {
-      result.success("Android " + android.os.Build.VERSION.RELEASE);
+
+      PictureSelector.create(activity)
+              .openGallery(PictureMimeType.ofImage())
+              .loadImageEngine(GlideEngine.createGlideEngine()) // 请参考Demo GlideEngine.java
+              .forResult(PictureConfig.CHOOSE_REQUEST);
+//      activity.startActivityForResult(new Intent(activity, PictureSelectorActivity.class), 0);
+      // result.success(null);
+     Map<String, String> m = new HashMap<String, String>();
+     m.put("path", "9345893485.png");
+     m.put("type", "image");
+     List<Map> list = new ArrayList<Map>();
+     list.add(m);
+
+     result.success(list);
     } else {
       result.notImplemented();
     }
