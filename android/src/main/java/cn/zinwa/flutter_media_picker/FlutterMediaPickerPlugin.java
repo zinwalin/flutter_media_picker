@@ -60,24 +60,12 @@ public class FlutterMediaPickerPlugin implements MethodCallHandler, FlutterPlugi
       result.error("no_activity", "flutter_media_picker plugin requires a foreground activity.", null);
       return;
     }
+
     if (call.method.equals("get_assets")) {
-
-      PictureSelector.create(this.activity)
-              .openGallery(PictureMimeType.ofImage())
-              .loadImageEngine(GlideEngine.createGlideEngine()) // 请参考Demo GlideEngine.java
-              .forResult(PictureConfig.CHOOSE_REQUEST);
-//         activity.startActivityForResult(new Intent(this.activity, PictureSelectorActivity.class), 0);
-//       result.success(null);
-     Map<String, String> m = new HashMap<String, String>();
-     m.put("path", "9345893485.png");
-     m.put("type", "image");
-     List<Map> list = new ArrayList<Map>();
-     list.add(m);
-
-     result.success(list);
+      delegate.getAssets(call, result);
     } else {
-      result.notImplemented();
-    }
+       result.notImplemented();
+     }
   }
 
   private void onAttachedToEngine(BinaryMessenger messenger) {
