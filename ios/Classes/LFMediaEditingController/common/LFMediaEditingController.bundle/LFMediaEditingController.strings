@@ -1,0 +1,52 @@
+/* 
+  LFImagePickerController.strings
+  LFImagePickerController
+
+  Created by Mr.D on 2018/3/9.
+  Copyright © 2018年 LamTsanFeng. All rights reserved.
+*/
+
+/* -------- LFBaseEditingController -------*/
+"_LFME_oKButtonTitle" = "完成";
+"_LFME_cancelButtonTitle" = "取消";
+"_LFME_processHintStr" = "正在处理...";
+
+"_LFME_alertViewCancelTitle" = "确定";
+
+"_LFME_reachMaximumLimitTitle" = "已达到输入上限";
+
+/* -------- LFAudioItem  -------*/
+"_LFME_defaultAudioItem_name" = "Default AudioTrack";
+"_LFME_MediaPicker_prompt" = "请选择需要的歌曲";
+"_LFME_AudioTackTitle_prompt" = "自定义音乐";
+
+/* -------- LFRatioMenu  -------*/
+"_LFME_ratio_Original" = "Original";
+
+/* -------- LFFilterMenu  -------*/
+"_LFME_filter_Original" = "Original";
+"_LFME_filter_Curve" = "Curve";
+"_LFME_filter_Chrome" = "Chrome";
+"_LFME_filter_Fade" = "Fade";
+"_LFME_filter_Instant" = "Instant";
+"_LFME_filter_Mono" = "Mono";
+"_LFME_filter_Noir" = "Noir";
+"_LFME_filter_Process" = "Process";
+"_LFME_filter_Tonal" = "Tonal";
+"_LFME_filter_Transfer" = "Transfer";
+"_LFME_filter_Linear" = "Linear";
+"_LFME_filter_Invert" = "Invert";
+"_LFME_filter_Monochrome" = "Monochrome";
+
+/* -------- LFBrushMenu  -------*/
+"_LFME_brush_Paint" = "画笔";
+"_LFME_brush_Highlight" = "双色笔";
+"_LFME_brush_Chalk" = "粉笔";
+"_LFME_brush_Fluorescent" = "荧光笔";
+"_LFME_brush_Stamp" = "图章";
+"_LFME_brush_Eraser" = "橡皮擦";
+
+/* -------- UserGuide  -------*/
+"_LFME_UserGuide_ToolBar_Scroll" = "向左👈滚动会发现更多功能噢。";
+"_LFME_UserGuide_StickerView_MovingView_Pinch" = "双指同样可以实现缩放和旋转。";
+"_LFME_UserGuide_StickerView_DisplayView_LongPress" = "长按可以预览图片。";
