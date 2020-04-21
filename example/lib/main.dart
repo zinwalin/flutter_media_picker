@@ -124,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.white,
                 margin: EdgeInsets.all(5.0),
                 child: Wrap(spacing: 0.0, children: <Widget>[
-                  // for (AssetMediaFile item in assets) _assetWidget(item)
+                   for (AssetMediaFile item in assets) _assetWidget(item)
                 ]),
               ),
             ),
