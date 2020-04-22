@@ -33,9 +33,10 @@
   NSDictionary *dict = call.arguments;
   if ([@"get_assets" isEqualToString:call.method]) {
      NSString *assetType = [NSString stringWithFormat:@"%@",[dict objectForKey:@"assetType"]];
+     NSNumber *maxCount = @([[dict objectForKey:@"maxSelectCount"] integerValue]);
 
     self.result = result;
-    [self handleAssetType:assetType];
+    [self handleAssetType:assetType maxCount:maxCount];
   } else {
     result(FlutterMethodNotImplemented);
   }
@@ -49,12 +50,13 @@
   return self;
 }
 
-- (void)handleAssetType:(NSString *)assetType {
+- (void)handleAssetType:(NSString *)assetType maxCount:(NSNumber *)maxCount {
     
     LFImagePickerController *imagePicker = [[LFImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];//这里设置最大选择数，图片和视频的
     // imagePicker.allowTakePicture = NO;
     // imagePicker.allowPickingOriginalPhoto = NO;
     imagePicker.allowTakePicture = YES;
+    imagePicker.maxImagesCount = [maxCount integerValue];
     imagePicker.maxVideosCount = 1; /** 解除混合选择- 要么1个视频，要么9个图片 */
     imagePicker.supportAutorotate = YES; /** 适配横屏 */
     imagePicker.allowPickingType = LFPickingMediaTypeALL;
