@@ -44,12 +44,15 @@ public class FlutterMediaPickerDelegate implements PluginRegistry.ActivityResult
         pendingResult = result;
         Map options = (Map) call.arguments;
         String typeString = (String) options.get("assetType");
+        int maxSelectCount = (int) options.get("maxSelectCount");
+        if (maxSelectCount < 0)
+            maxSelectCount = 9;
         int chooseMode = PictureMimeType.ofAll();
         if (typeString.equals("assetImageOnly")) {
             chooseMode = PictureMimeType.ofImage();
         } else if (typeString.equals("assetVideoOnly")) {
             chooseMode = PictureMimeType.ofVideo();
-        } else if (typeString.equals("assetImageAdnVideo")) {
+        } else if (typeString.equals("assetImageAndVideo")) {
             chooseMode = PictureMimeType.ofAll();
         }
         // .setPictureWindowAnimationStyle(mWindowAnimationStyle)
@@ -62,8 +65,8 @@ public class FlutterMediaPickerDelegate implements PluginRegistry.ActivityResult
 
         PictureSelector.create(this.activity).openGallery(chooseMode).isWeChatStyle(true).recordVideoSecond(30)
                 .enableCrop(true).freeStyleCropEnabled(true).compress(true).compressQuality(60).maxVideoSelectNum(1)
-                .isOriginalImageControl(true).rotateEnabled(true).scaleEnabled(true)
-                .loadImageEngine(GlideEngine.createGlideEngine())
+                .maxSelectNum(maxSelectCount).isOriginalImageControl(true).rotateEnabled(true).scaleEnabled(true)
+                .imageFormat(PictureMimeType.PNG).loadImageEngine(GlideEngine.createGlideEngine())
                 // .forResult(PictureConfig.CHOOSE_REQUEST);
                 .forResult(new OnResultCallbackListener<LocalMedia>() {
                     @Override
@@ -81,7 +84,7 @@ public class FlutterMediaPickerDelegate implements PluginRegistry.ActivityResult
                             Log.i(TAG, "宽高: " + media.getWidth() + "x" + media.getHeight());
                             Log.i(TAG, "Size: " + media.getSize());
                             Log.i(TAG, "MIMETYPE: " + media.getMimeType());
-                            Log.i(TAG, "Duration: " + media.getDuration()/1000);
+                            Log.i(TAG, "Duration: " + media.getDuration() / 1000);
 
                             // TODO
                             // 可以通过PictureSelectorExternalUtils.getExifInterface();方法获取一些额外的资源信息，如旋转角度、经纬度等信息
@@ -90,7 +93,7 @@ public class FlutterMediaPickerDelegate implements PluginRegistry.ActivityResult
                             m.put("type", media.getMimeType().contains("image") ? "image" : "video");
                             m.put("width", media.getWidth());
                             m.put("height", media.getHeight());
-                            m.put("duration", media.getDuration()/1000);
+                            m.put("duration", media.getDuration() / 1000);
                             list.add(m);
                         }
 

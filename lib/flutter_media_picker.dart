@@ -20,15 +20,19 @@ enum AssetsType {
 const String assetImageOnly = 'assetImageOnly'; // 仅图片
 const String assetVideoOnly = 'assetVideoOnly'; // 仅视频
 const String assetImageOrVideo = 'assetImageOrVideo'; // 图片、视频其一
-const String assetImageAdnVideo = 'assetImageAndVideo'; // 图片和视频一起
+const String assetImageAndVideo = 'assetImageAndVideo'; // 图片和视频一起
 
 class AssetPickers {
   static const MethodChannel _channel =
       const MethodChannel('flutter_media_picker');
 
   static Future<List> getAssets(
-      {AssetsType assetType = AssetsType.imageOnly, int imageCount = 9}) async {
-    Map map = {'assetType': getAssetType(assetType)};
+      {AssetsType assetType = AssetsType.imageOnly,
+      int maxSelectCount = 9}) async {
+    Map map = {
+      'assetType': getAssetType(assetType),
+      'maxSelectCount': maxSelectCount
+    };
     final List assets = await _channel.invokeMethod('get_assets', map);
     return assets
         .map<AssetMediaFile>((json) => AssetMediaFile.fromJson(json))
@@ -44,7 +48,7 @@ class AssetPickers {
         return assetImageOrVideo;
         break;
       case AssetsType.imageAndVideo:
-        return assetImageAdnVideo;
+        return assetImageAndVideo;
         break;
       default:
         return assetImageOnly;

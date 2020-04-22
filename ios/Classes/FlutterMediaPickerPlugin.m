@@ -75,7 +75,7 @@
     } else if([assetType isEqualToString:@"assetImageOrVideo"]) {
         // 图片或视频
         imagePicker.maxVideosCount = 1;
-    } else if([assetType isEqualToString:@"assetImageAdnVideo"]) {
+    } else if([assetType isEqualToString:@"assetImageAndVideo"]) {
         // 图片和视频
         imagePicker.maxVideosCount = 1;
     }
