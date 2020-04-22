@@ -60,7 +60,6 @@ public class FlutterMediaPickerPlugin implements MethodCallHandler, FlutterPlugi
       result.error("no_activity", "flutter_media_picker plugin requires a foreground activity.", null);
       return;
     }
-
     if (call.method.equals("get_assets")) {
       delegate.getAssets(call, result);
     } else {

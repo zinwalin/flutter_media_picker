@@ -51,9 +51,9 @@ class AssetMediaFile {
         // orientation = json['orientation'],
         duration = json['duration']?.round() ?? 0,
         // mimeType = json['mimeType'],
-        type = MediaType.values[json['type'] == 'image' ? 0 : 1]
-        // width = json['width'],
-        // height = json['height']
+        type = MediaType.values[json['type'] == 'image' ? 0 : 1],
+        width = json['width'] ?? 0,
+        height = json['height'] ?? 0
         ;
 
   @override
