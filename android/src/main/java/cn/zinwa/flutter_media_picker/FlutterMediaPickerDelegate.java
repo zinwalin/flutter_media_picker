@@ -55,15 +55,14 @@ public class FlutterMediaPickerDelegate implements PluginRegistry.ActivityResult
         } else if (typeString.equals("assetImageAndVideo")) {
             chooseMode = PictureMimeType.ofAll();
         }
-        // .setPictureWindowAnimationStyle(mWindowAnimationStyle)
-        // PictureWindowAnimationStyle mWindowAnimationStyle = new
-        // PictureWindowAnimationStyle();
-        // mWindowAnimationStyle.ofAllAnimation(R.anim.picture_anim_up_in,
-        // R.anim.picture_anim_down_out);
+
+        PictureWindowAnimationStyle mWindowAnimationStyle = new PictureWindowAnimationStyle();
+        mWindowAnimationStyle.ofAllAnimation(R.anim.picture_anim_up_in, R.anim.picture_anim_down_out);
 
         // TODO .maxSelectNum()
 
-        PictureSelector.create(this.activity).openGallery(chooseMode).isWeChatStyle(true).recordVideoSecond(30)
+        PictureSelector.create(this.activity).openGallery(chooseMode)
+                .setPictureWindowAnimationStyle(mWindowAnimationStyle).isWeChatStyle(true).recordVideoSecond(30)
                 .enableCrop(false).freeStyleCropEnabled(false).compress(true).compressQuality(60).maxVideoSelectNum(1)
                 .maxSelectNum(maxSelectCount).isOriginalImageControl(true).rotateEnabled(true).scaleEnabled(true)
                 .imageFormat(PictureMimeType.PNG).loadImageEngine(GlideEngine.createGlideEngine())
