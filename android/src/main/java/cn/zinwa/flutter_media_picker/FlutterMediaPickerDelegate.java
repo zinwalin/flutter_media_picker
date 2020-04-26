@@ -59,13 +59,12 @@ public class FlutterMediaPickerDelegate implements PluginRegistry.ActivityResult
         PictureWindowAnimationStyle mWindowAnimationStyle = new PictureWindowAnimationStyle();
         mWindowAnimationStyle.ofAllAnimation(R.anim.picture_anim_up_in, R.anim.picture_anim_down_out);
 
-        // TODO .maxSelectNum()
-
-        PictureSelector.create(this.activity).openGallery(chooseMode)
+        PictureSelector.create(this.activity).openGallery(chooseMode).isPageStrategy(true)
                 .setPictureWindowAnimationStyle(mWindowAnimationStyle).isWeChatStyle(true).recordVideoSecond(30)
                 .enableCrop(false).freeStyleCropEnabled(false).compress(true).compressQuality(60).maxVideoSelectNum(1)
                 .maxSelectNum(maxSelectCount).isOriginalImageControl(true).rotateEnabled(true).scaleEnabled(true)
-                .imageFormat(PictureMimeType.PNG).loadImageEngine(GlideEngine.createGlideEngine())
+                .isAutomaticTitleRecyclerTop(true).isMaxSelectEnabledMask(true).imageFormat(PictureMimeType.PNG)
+                .loadImageEngine(GlideEngine.createGlideEngine())
                 // .forResult(PictureConfig.CHOOSE_REQUEST);
                 .forResult(new OnResultCallbackListener<LocalMedia>() {
                     @Override
