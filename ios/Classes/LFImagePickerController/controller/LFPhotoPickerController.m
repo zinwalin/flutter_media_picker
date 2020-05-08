@@ -1015,6 +1015,36 @@ CGFloat const bottomToolBarHeight = 50.f;
                 }];
             }
         }];
+    } else if (picker.sourceType==UIImagePickerControllerSourceTypeCamera && [mediaType isEqualToString:@"public.movie"]){
+        NSURL *videoUrl = info[UIImagePickerControllerMediaURL];
+        [[LFAssetManager manager] saveVideoToCustomPhotosAlbumWithTitle:nil videoURLs:@[videoUrl] complete:^(id asset, NSError *error) {
+            if (asset && !error) {
+                id phAsset = asset;
+                if ([asset isKindOfClass:[NSArray class]]) {
+                    phAsset = [(NSArray *)asset lastObject];
+                }
+                [[LFAssetManager manager] getVideoResultWithAsset:phAsset presetName:imagePickerVc.videoCompressPresetName cache:NO completion:^(LFResultVideo *resultVideo) {
+                    [imagePickerVc hideProgressHUD];
+                    [picker.presentingViewController.presentingViewController dismissViewControllerAnimated:YES completion:^{
+                        [self callDelegateMethodWithResults:@[resultVideo]];
+                    }];
+                    //                    if (imagePickerVc.autoDismiss) {
+                    //                        [imagePickerVc dismissViewControllerAnimated:YES completion:^{
+                    //                            [self callDelegateMethodWithResults:@[resultVideo]];
+                    //                        }];
+                    //                    } else {
+                    //                        [self callDelegateMethodWithResults:@[resultVideo]];
+                    //                    }
+                }];
+            }
+            else if (error) {
+                [imagePickerVc hideProgressHUD];
+                [imagePickerVc showAlertWithTitle:[NSBundle lf_localizedStringForKey:@"_cameraTakePhotoError"] message:error.localizedDescription complete:^{
+                    [picker dismissViewControllerAnimated:YES completion:nil];
+                }];
+            }
+        }];
+        NSLog(@"视频:%@", videoUrl);
     } else {
         [imagePickerVc hideProgressHUD];
         [picker dismissViewControllerAnimated:YES completion:nil];
@@ -1159,12 +1189,16 @@ CGFloat const bottomToolBarHeight = 50.f;
                 imagePickerVc.imagePickerControllerTakePhoto();
             } else {
                 /** 调用内置相机模块 */
+                NSString *mediaType = (NSString *)kUTTypeImage;
+                if (imagePickerVc.allowPickingType == LFPickingMediaTypeVideo) {
+                    mediaType = (NSString *)kUTTypeMovie;
+                }
                 UIImagePickerControllerSourceType srcType = UIImagePickerControllerSourceTypeCamera;
                 UIImagePickerController *mediaPickerController = [[UIImagePickerController alloc] init];
                 mediaPickerController.sourceType = srcType;
                 mediaPickerController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
                 mediaPickerController.delegate = self;
-                mediaPickerController.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) kUTTypeImage, nil];
+                mediaPickerController.mediaTypes = [[NSArray alloc] initWithObjects: (NSString *) mediaType, nil];
                 
                 /** warning：Snapshotting a view that has not been rendered results in an empty snapshot. Ensure your view has been rendered at least once before snapshotting or snapshot after screen updates. */
                 [self presentViewController:mediaPickerController animated:YES completion:NULL];
