@@ -87,7 +87,8 @@ public class FlutterMediaPickerDelegate implements PluginRegistry.ActivityResult
                             // TODO
                             // 可以通过PictureSelectorExternalUtils.getExifInterface();方法获取一些额外的资源信息，如旋转角度、经纬度等信息
                             Map m = new HashMap();
-                            m.put("path", media.isCompressed() ? media.getCompressPath() : media.getAndroidQToPath());
+                            m.put("path", media.isCompressed() ? media.getCompressPath()
+                                    : media.getAndroidQToPath() == null ? media.getPath() : media.getAndroidQToPath());
                             m.put("type", media.getMimeType().contains("image") ? "image" : "video");
                             m.put("width", media.getWidth());
                             m.put("height", media.getHeight());
