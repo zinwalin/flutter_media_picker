@@ -63,7 +63,7 @@ public class FlutterMediaPickerDelegate implements PluginRegistry.ActivityResult
                 .isGif(true).setPictureWindowAnimationStyle(mWindowAnimationStyle).isWeChatStyle(true)
                 .recordVideoSecond(30).enableCrop(false).freeStyleCropEnabled(false).compress(true)
                 .minimumCompressSize(1024).compressQuality(100).maxVideoSelectNum(1).maxSelectNum(maxSelectCount)
-                .isOriginalImageControl(true).rotateEnabled(true).scaleEnabled(true).isAutomaticTitleRecyclerTop(true)
+                .isOriginalImageControl(false).rotateEnabled(true).scaleEnabled(true).isAutomaticTitleRecyclerTop(true)
                 .isMaxSelectEnabledMask(true).loadImageEngine(GlideEngine.createGlideEngine())
                 // .forResult(PictureConfig.CHOOSE_REQUEST);
                 .forResult(new OnResultCallbackListener<LocalMedia>() {
