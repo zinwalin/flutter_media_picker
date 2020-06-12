@@ -124,11 +124,11 @@
             if ([resultImage.originalData writeToFile:path atomically:YES]) {
                 imgPath = path;
             }
-            [imagesArray addObject:@{@"path":imgPath , @"type":@"image"}];
+            [imagesArray addObject:@{@"path":imgPath , @"type":@"image", @"width": [NSNumber numberWithDouble: resultImage.info.size.width], @"height": resultImage.info.size.height,}];
 
         } else if ([result isKindOfClass:[LFResultVideo class]]) {
             LFResultVideo *resultVideo = (LFResultVideo *)result;
-            [imagesArray addObject:@{@"path":[resultVideo.url.description stringByReplacingOccurrencesOfString:@"file://" withString:@""], @"type":@"video", @"duration": [NSNumber numberWithDouble: resultVideo.duration]}];
+            [imagesArray addObject:@{@"path":[resultVideo.url.description stringByReplacingOccurrencesOfString:@"file://" withString:@""], @"type":@"video", @"width": [NSNumber numberWithDouble: resultVideo.info.size.width], @"height": [NSNumber numberWithDouble: resultVideo.info.size.height], @"duration": [NSNumber numberWithDouble: resultVideo.duration]}];
         } else {
             /** 无法处理的数据 */
             NSLog(@"%@", result.error);
