@@ -124,7 +124,7 @@
             if ([resultImage.originalData writeToFile:path atomically:YES]) {
                 imgPath = path;
             }
-            [imagesArray addObject:@{@"path":imgPath , @"type":@"image", @"width": [NSNumber numberWithDouble: resultImage.info.size.width], @"height": resultImage.info.size.height,}];
+            [imagesArray addObject:@{@"path":imgPath , @"type":@"image", @"width": [NSNumber numberWithDouble: resultImage.info.size.width], @"height": [NSNumber numberWithDouble: resultImage.info.size.height],}];
 
         } else if ([result isKindOfClass:[LFResultVideo class]]) {
             LFResultVideo *resultVideo = (LFResultVideo *)result;
