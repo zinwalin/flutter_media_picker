@@ -52,9 +52,8 @@ class AssetMediaFile {
         duration = json['duration']?.round() ?? 0,
         // mimeType = json['mimeType'],
         type = MediaType.values[json['type'] == 'image' ? 0 : 1],
-        width = json['width'] ?? 0,
-        height = json['height'] ?? 0
-        ;
+        width = json['width']?.round() ?? 0,
+        height = json['height']?.round() ?? 0;
 
   @override
   bool operator ==(Object other) =>
