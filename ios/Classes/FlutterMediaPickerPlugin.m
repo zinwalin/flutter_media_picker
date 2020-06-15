@@ -54,7 +54,7 @@
     
     LFImagePickerController *imagePicker = [[LFImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];//这里设置最大选择数，图片和视频的
     // imagePicker.allowTakePicture = NO;
-    // imagePicker.allowPickingOriginalPhoto = NO;
+    imagePicker.allowPickingOriginalPhoto = NO; //　是否支持原图
     imagePicker.allowTakePicture = YES;
     imagePicker.maxImagesCount = [maxCount integerValue];
     imagePicker.maxVideosCount = 1; /** 解除混合选择- 要么1个视频，要么9个图片 */
